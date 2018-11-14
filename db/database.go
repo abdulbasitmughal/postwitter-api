@@ -16,6 +16,8 @@ func CreateCon() *sql.DB {
 	dbURI := os.Getenv("CLEARDB_DATABASE_URL")
 	dbURIParts := strings.Split(dbURI, "//")
 
+	fmt.Println(dbURIParts[1])
+
 	db, err := sql.Open("mysql", dbURIParts[1])
 	if err != nil {
 		panic(err)
