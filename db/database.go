@@ -2,9 +2,9 @@ package db
 
 import (
 	"database/sql"
-	"fmt"
+	"os"
+	"strings"
 
-	"postwitter-api/conf"
 	// load drivers for mysql
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -12,9 +12,12 @@ import (
 // CreateCon mysql database connection
 func CreateCon() *sql.DB {
 
-	db, err := sql.Open("mysql", conf.DBUSER+":"+conf.DBPASSWORD+"@tcp("+conf.DBHOST+":"+conf.DBPORT+")/"+conf.DBNAME)
+	dbURI := os.Getenv("CLEARDB_DATABASE_URL")
+	dbURIParts := strings.Split(dbURI, "//")
+
+	db, err := sql.Open("mysql", dbURIParts[1])
 	if err != nil {
-		fmt.Println(err.Error())
+		panic(err)
 	}
 
 	//defer db.Close()
@@ -23,8 +26,7 @@ func CreateCon() *sql.DB {
 	// fmt.Println(err)
 
 	if err != nil {
-		fmt.Println("db is not connected")
-		fmt.Println(err.Error())
+		panic(err)
 	}
 
 	return db
