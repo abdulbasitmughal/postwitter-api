@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/abasit/postwitter-api/model"
+	"postwitter-api/model"
 
 	"github.com/labstack/echo"
 )

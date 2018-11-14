@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/abasit/postwitter-api/conf"
+	"postwitter-api/conf"
 
-	"github.com/abasit/postwitter-api/model"
+	"postwitter-api/model"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"

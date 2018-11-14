@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/abasit/postwitter-api/conf"
+	"postwitter-api/conf"
 	// load drivers for mysql
 	_ "github.com/go-sql-driver/mysql"
 )

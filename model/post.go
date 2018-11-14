@@ -3,7 +3,7 @@ package model
 import (
 	"fmt"
 
-	"github.com/abasit/postwitter-api/db"
+	"postwitter-api/db"
 )
 
 // Post struct mapped over database table

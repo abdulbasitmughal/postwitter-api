@@ -2,10 +2,9 @@ package main
 
 import (
 	"os"
+	"postwitter-api/handler"
 
-	"github.com/abasit/postwitter-api/handler"
-
-	"github.com/abasit/postwitter-api/conf"
+	"postwitter-api/conf"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"

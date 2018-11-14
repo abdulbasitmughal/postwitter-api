@@ -1,6 +1,6 @@
 {
 	"comment": "",
-	"ignore": "test",
+	"ignore": "postwitter-api",
 	"package": [
 		{
 			"path": "appengine/cloudsql",
@@ -107,5 +107,5 @@
 			"revisionTime": "2018-10-31T00:20:03Z"
 		}
 	],
-	"rootPath": "test"
+	"rootPath": "postwitter-api"
 }

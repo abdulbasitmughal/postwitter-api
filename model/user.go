@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/abasit/postwitter-api/db"
+	"postwitter-api/db"
 
 	// _ "database/sql"
 	_ "github.com/go-sql-driver/mysql"
