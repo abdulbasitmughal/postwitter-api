@@ -12,7 +12,7 @@ import (
 // GetUserPosts function
 func GetUserPosts(c echo.Context) error {
 
-	userID := c.Param("id")
+	email := c.Param("email")
 	page, _ := strconv.Atoi(c.QueryParam("page"))
 	limit, _ := strconv.Atoi(c.QueryParam("limit"))
 
@@ -26,7 +26,7 @@ func GetUserPosts(c echo.Context) error {
 
 	initValue := (page - 1) * limit
 
-	response := model.GetUserPosts(userID, initValue, limit)
+	response := model.GetUserPosts(email, initValue, limit)
 	return c.JSON(http.StatusOK, response)
 }
 
@@ -54,7 +54,7 @@ func GetUserPostFeed(c echo.Context) error {
 func CreatePost(c echo.Context) (err error) {
 	// Get User info
 	u := &model.User{
-		ID: userIDFromToken(c),
+		Email: userIDFromToken(c),
 	}
 
 	// Bind
@@ -69,7 +69,7 @@ func CreatePost(c echo.Context) (err error) {
 	}
 
 	// Create Post
-	post := model.CreatePost(u.ID, p.Message)
+	post := model.CreatePost(u.Email, p.Message)
 	if post.ID <= 0 {
 		return &echo.HTTPError{Code: http.StatusBadRequest, Message: "Cannot post message at the moment"}
 	}

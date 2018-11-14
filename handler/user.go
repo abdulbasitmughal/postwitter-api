@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"time"
@@ -31,13 +30,6 @@ func GetUsers(c echo.Context) error {
 	initValue := (page - 1) * limit
 
 	response := model.GetUsers(initValue, limit)
-	return c.JSON(http.StatusOK, response)
-}
-
-// GetUser function
-func GetUser(c echo.Context) error {
-	userID := c.Param("id")
-	response := model.GetUser(userID)
 	return c.JSON(http.StatusOK, response)
 }
 
@@ -90,7 +82,7 @@ func Login(c echo.Context) (err error) {
 
 	// Set claims
 	claims := token.Claims.(jwt.MapClaims)
-	claims["id"] = user.ID
+	claims["email"] = u.Email
 	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
 	// Generate encoded token and send it as response
@@ -106,19 +98,8 @@ func Login(c echo.Context) (err error) {
 }
 
 // userIDFromToken fetch userId from jwt token
-func userIDFromToken(c echo.Context) int64 {
+func userIDFromToken(c echo.Context) string {
 	user := c.Get("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
-
-	fmt.Println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-	fmt.Println(claims["id"])
-
-	id, err := strconv.Atoi(claims["id"].(string))
-
-	fmt.Println(int64(id))
-
-	if err != nil {
-		fmt.Print(err)
-	}
-	return 123
+	return claims["email"].(string)
 }

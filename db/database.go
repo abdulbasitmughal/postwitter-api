@@ -31,11 +31,11 @@ func CreateCon() *sql.DB {
 
 	//defer db.Close()
 	// make sure connection is available
-	err = db.Ping()
-	fmt.Println(err)
+	// err = db.Ping()
+	// fmt.Println(err)
 
 	if err != nil {
-		panic(err)
+		panic(err.Error)
 	}
 
 	return db

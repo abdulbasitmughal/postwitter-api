@@ -20,10 +20,10 @@ type Posts struct {
 }
 
 // GetUserPosts function
-func GetUserPosts(userID string, initValue int, limit int) Posts {
+func GetUserPosts(email string, initValue int, limit int) Posts {
 	con := db.CreateCon()
 	//db.CreateCon()
-	sqlStatement := fmt.Sprintf("SELECT id, message, time_tag FROM post WHERE user_id = %s ORDER BY time_tag desc LIMIT %d,%d", userID, initValue, limit)
+	sqlStatement := fmt.Sprintf("SELECT id, message, time_tag FROM post INNER JOIN user ON user.id = post.user_id WHERE email = %s ORDER BY time_tag desc LIMIT %d,%d", email, initValue, limit)
 
 	rows, err := con.Query(sqlStatement)
 
@@ -82,11 +82,11 @@ func GetUserPostFeed(initValue int, limit int) Posts {
 }
 
 // CreatePost function
-func CreatePost(userID int64, message string) Post {
+func CreatePost(email string, message string) Post {
 	con := db.CreateCon()
 
 	p := Post{}
-
+	userID := GetUserByEmail(email)
 	res, err := con.Exec("INSERT INTO post (user_id, message) VALUES (?, ?)", userID, message)
 
 	if err != nil {

@@ -58,33 +58,6 @@ func GetUsers(initValue int, limit int) Users {
 	return result
 }
 
-// GetUser function
-func GetUser(userID string) User {
-	con := db.CreateCon()
-	//db.CreateCon()
-	sqlStatement := fmt.Sprintf("SELECT id, name, email, time_tag FROM user WHERE id = %s", userID)
-
-	rows, err := con.Query(sqlStatement)
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer rows.Close()
-
-	user := User{}
-
-	for rows.Next() {
-		err2 := rows.Scan(&user.ID, &user.Name, &user.Email, &user.TimeTag)
-		// Exit if we get an error
-		if err2 != nil {
-			fmt.Print(err2)
-		}
-	}
-
-	return user
-}
-
 // ValidateUser function
 func ValidateUser(email string, password string) User {
 	con := db.CreateCon()
@@ -132,6 +105,21 @@ func CreateUser(name string, email string, password string) User {
 	}
 
 	defer con.Close()
+
+	return u
+}
+
+// GetUserByEmail function
+func GetUserByEmail(email string) User {
+	con := db.CreateCon()
+
+	u := User{}
+	err := con.QueryRow("SELECT id, name, time_tag FROM user WHERE email = ?", email).Scan(&u.ID, &u.Name, &u.TimeTag)
+
+	defer con.Close()
+	if err != nil {
+
+	}
 
 	return u
 }

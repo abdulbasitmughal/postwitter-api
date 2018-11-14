@@ -36,8 +36,7 @@ func main() {
 	e.POST("/login", handler.Login)
 
 	e.GET("/users", handler.GetUsers)
-	e.GET("/users/:id", handler.GetUser)
-	e.GET("/users/:id/posts", handler.GetUserPosts)
+	e.GET("/users/:email/posts", handler.GetUserPosts)
 	e.GET("/posts", handler.GetUserPostFeed)
 
 	e.POST("/posts", handler.CreatePost)
