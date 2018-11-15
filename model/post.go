@@ -86,8 +86,9 @@ func CreatePost(email string, message string) Post {
 	con := db.CreateCon()
 
 	p := Post{}
-	userID := GetUserByEmail(email)
-	res, err := con.Exec("INSERT INTO post (user_id, message) VALUES (?, ?)", userID, message)
+	user := GetUserByEmail(email)
+
+	res, err := con.Exec("INSERT INTO post (user_id, message) VALUES (?, ?)", user.ID, message)
 
 	if err != nil {
 		p.ID = -1
@@ -97,7 +98,6 @@ func CreatePost(email string, message string) Post {
 			println("Error:", err.Error())
 		} else {
 			p.ID = id
-			println("LastInsertId:", id)
 		}
 	}
 
