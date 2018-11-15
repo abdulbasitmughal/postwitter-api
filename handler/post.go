@@ -9,18 +9,14 @@ import (
 	"github.com/labstack/echo"
 )
 
-// GetUserPosts function
-// Login godoc
-// @Summary List accounts
-// @Description get accounts
+// GetUserPosts godoc
+// @Summary List Users Posts
+// @Description get list of user posts using email address
 // @Accept  json
 // @Produce  json
-// @Param q query string false "name search by q"
-// @Success 200 {array} model.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
+// @Success 200 {array} model.Post
 // @Failure 500 {object} httputil.HTTPError
-// @Router /accounts [get]
+// @Router /v1/users/:email/posts [get]
 func GetUserPosts(c echo.Context) error {
 
 	email := c.Param("email")

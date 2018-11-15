@@ -14,20 +14,20 @@ import (
 
 // @title Postwitter REST API
 // @version 1.0
-// @description This is a sample server celler server.
-// @termsOfService http://swagger.io/terms/
+// @description This is a sample demo API server.
+// @termsOfService https://postwitter-portal.herokuapp.com/terms/
 
 // @contact.name API Support
-// @contact.url http://www.swagger.io/support
-// @contact.email support@swagger.io
+// @contact.url https://postwitter-portal.herokuapp.com/support
+// @contact.email abdulbasitmughal@gmail.com
 
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @license.name MIT 2.0
+// @license.url https://opensource.org/licenses/MIT
 
-// @host localhost:8080
-// @BasePath /api/v1
+// @host https://postwitter-portal.herokuapp.com
+// @BasePath /v1
 
-// @securityDefinitions.basic BasicAuth
+// @securityDefinitions.basic JWT
 
 // @securityDefinitions.apikey ApiKeyAuth
 // @in header
@@ -36,22 +36,6 @@ import (
 // @securitydefinitions.oauth2.application OAuth2Application
 // @tokenUrl https://example.com/oauth/token
 // @scope.write Grants write access
-// @scope.admin Grants read and write access to administrative information
-
-// @securitydefinitions.oauth2.implicit OAuth2Implicit
-// @authorizationurl https://example.com/oauth/authorize
-// @scope.write Grants write access
-// @scope.admin Grants read and write access to administrative information
-
-// @securitydefinitions.oauth2.password OAuth2Password
-// @tokenUrl https://example.com/oauth/token
-// @scope.read Grants read access
-// @scope.write Grants write access
-// @scope.admin Grants read and write access to administrative information
-
-// @securitydefinitions.oauth2.accessCode OAuth2AccessCode
-// @tokenUrl https://example.com/oauth/token
-// @authorizationurl https://example.com/oauth/authorize
 // @scope.admin Grants read and write access to administrative information
 
 func main() {

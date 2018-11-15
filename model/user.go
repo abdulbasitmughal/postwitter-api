@@ -67,7 +67,7 @@ func ValidateUser(email string, password string) User {
 	defer con.Close()
 
 	if err != nil {
-
+		fmt.Println(err)
 	}
 
 	return u
@@ -82,7 +82,7 @@ func CreateUser(email string, password string) User {
 
 	defer con.Close()
 	if err != nil {
-
+		fmt.Println(err)
 	}
 
 	if u.ID > 0 {
@@ -117,7 +117,7 @@ func GetUserByEmail(email string) User {
 
 	defer con.Close()
 	if err != nil {
-
+		fmt.Println(err)
 	}
 
 	return u

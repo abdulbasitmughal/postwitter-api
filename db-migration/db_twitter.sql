@@ -1,6 +1,5 @@
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
   `email` varchar(100) NOT NULL COMMENT 'Email address of user and always be unique',
   `password` varchar(45) DEFAULT NULL,
   `token` text COMMENT 'token issued to user',
