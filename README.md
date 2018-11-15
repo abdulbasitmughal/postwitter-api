@@ -36,13 +36,13 @@ If your see port 5000 then it will available on [localhost:5000](http://localhos
 
 ## Deploying to Heroku
 
-###Install the Heroku CLI
+### Install the Heroku CLI
 Download and install the Heroku CLI. If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
 
 ```sh
 $ heroku login
 ```
-###Create a new Git repository
+### Create a new Git repository
 Initialize a git repository in a new or existing directory
 
 ```sh
@@ -50,7 +50,7 @@ $ cd postwitter-api/
 $ git init
 $ heroku git:remote -a {remote-project-name}
 ```
-###Deploy your application
+### Deploy your application
 Commit your code to the repository and deploy it to Heroku using Git.
 
 ```sh
@@ -59,8 +59,12 @@ $ git commit -am "make it better"
 $ git push heroku master
 ```
 
-## Documentation
+## API's Documentation
 
-For more information about using Go on Heroku, see these Dev Center articles:
-
-- [Go on Heroku](https://devcenter.heroku.com/categories/go)
+There are total six API's incorporated to complete this assignment. Here are details:
+1. Signup (POST: https://postwitter-api.herokuapp.com/v1/signup)
+2. Login (POST: https://postwitter-api.herokuapp.com/v1/login)
+3. Get User List (GET: https://postwitter-api.herokuapp.com/v1/users)
+4. Get User's Post (GET: https://postwitter-api.herokuapp.com/v1/users/:email/posts)
+5. Get User's Post Feed (GET: https://postwitter-api.herokuapp.com/v1/posts)
+6. Create Post (POST: https://postwitter-api.herokuapp.com/v1/posts)
