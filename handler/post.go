@@ -10,6 +10,17 @@ import (
 )
 
 // GetUserPosts function
+// Login godoc
+// @Summary List accounts
+// @Description get accounts
+// @Accept  json
+// @Produce  json
+// @Param q query string false "name search by q"
+// @Success 200 {array} model.Account
+// @Failure 400 {object} httputil.HTTPError
+// @Failure 404 {object} httputil.HTTPError
+// @Failure 500 {object} httputil.HTTPError
+// @Router /accounts [get]
 func GetUserPosts(c echo.Context) error {
 
 	email := c.Param("email")
@@ -31,6 +42,17 @@ func GetUserPosts(c echo.Context) error {
 }
 
 // GetUserPostFeed function
+// Login godoc
+// @Summary List accounts
+// @Description get accounts
+// @Accept  json
+// @Produce  json
+// @Param q query string false "name search by q"
+// @Success 200 {array} model.Account
+// @Failure 400 {object} httputil.HTTPError
+// @Failure 404 {object} httputil.HTTPError
+// @Failure 500 {object} httputil.HTTPError
+// @Router /accounts [get]
 func GetUserPostFeed(c echo.Context) error {
 
 	page, _ := strconv.Atoi(c.QueryParam("page"))
@@ -51,6 +73,17 @@ func GetUserPostFeed(c echo.Context) error {
 }
 
 // CreatePost function
+// Login godoc
+// @Summary List accounts
+// @Description get accounts
+// @Accept  json
+// @Produce  json
+// @Param q query string false "name search by q"
+// @Success 200 {array} model.Account
+// @Failure 400 {object} httputil.HTTPError
+// @Failure 404 {object} httputil.HTTPError
+// @Failure 500 {object} httputil.HTTPError
+// @Router /accounts [get]
 func CreatePost(c echo.Context) (err error) {
 	// Get User info
 	u := &model.User{

@@ -14,6 +14,18 @@ import (
 )
 
 // GetUsers function
+// ShowAccount godoc
+// @Summary Show a account
+// @Description get string by ID
+// @ID get-string-by-int
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Account ID"
+// @Success 200 {object} model.Account
+// @Failure 400 {object} httputil.HTTPError
+// @Failure 404 {object} httputil.HTTPError
+// @Failure 500 {object} httputil.HTTPError
+// @Router /accounts/{id} [get]
 func GetUsers(c echo.Context) error {
 
 	page, _ := strconv.Atoi(c.QueryParam("page"))
@@ -34,6 +46,17 @@ func GetUsers(c echo.Context) error {
 }
 
 // Signup function
+// Login godoc
+// @Summary List accounts
+// @Description get accounts
+// @Accept  json
+// @Produce  json
+// @Param q query string false "name search by q"
+// @Success 200 {array} model.Account
+// @Failure 400 {object} httputil.HTTPError
+// @Failure 404 {object} httputil.HTTPError
+// @Failure 500 {object} httputil.HTTPError
+// @Router /accounts [get]
 func Signup(c echo.Context) (err error) {
 	// Bind
 	u := new(model.User)
@@ -47,7 +70,7 @@ func Signup(c echo.Context) (err error) {
 	}
 
 	// Create User
-	user := model.CreateUser(u.Name, u.Email, u.Password)
+	user := model.CreateUser(u.Email, u.Password)
 	if user.ID <= 0 {
 		return &echo.HTTPError{Code: http.StatusBadRequest, Message: "invalid/unavailable email address"}
 	}
@@ -59,7 +82,17 @@ func Signup(c echo.Context) (err error) {
 	return c.JSON(http.StatusOK, u)
 }
 
-// Login function
+// Login godoc
+// @Summary List accounts
+// @Description get accounts
+// @Accept  json
+// @Produce  json
+// @Param q query string false "name search by q"
+// @Success 200 {array} model.Account
+// @Failure 400 {object} httputil.HTTPError
+// @Failure 404 {object} httputil.HTTPError
+// @Failure 500 {object} httputil.HTTPError
+// @Router /accounts [get]
 func Login(c echo.Context) (err error) {
 	// Bind
 	u := new(model.User)
@@ -90,7 +123,6 @@ func Login(c echo.Context) (err error) {
 	if err != nil {
 		return err
 	}
-	u.Name = user.Name
 	u.TimeTag = user.TimeTag
 	u.ID = user.ID
 	u.Password = "" // Don't send password

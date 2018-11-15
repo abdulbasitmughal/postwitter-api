@@ -13,7 +13,6 @@ import (
 // User struct mapped over database table
 type User struct {
 	ID       int64  `db:"id" json:"id"`
-	Name     string `db:"name" json:"name"`
 	Email    string `db:"email" json: "email"`
 	Password string `db:"password" json: "password"`
 	Token    string `db:"token" json: "token"`
@@ -31,7 +30,7 @@ var con *sql.DB
 func GetUsers(initValue int, limit int) Users {
 	con := db.CreateCon()
 	//db.CreateCon()
-	sqlStatement := fmt.Sprintf("SELECT id, name, email, time_tag FROM user ORDER BY name LIMIT %d,%d", initValue, limit)
+	sqlStatement := fmt.Sprintf("SELECT id, email, time_tag FROM user ORDER BY email LIMIT %d,%d", initValue, limit)
 
 	rows, err := con.Query(sqlStatement)
 
@@ -46,7 +45,7 @@ func GetUsers(initValue int, limit int) Users {
 	for rows.Next() {
 		user := User{}
 
-		err2 := rows.Scan(&user.ID, &user.Name, &user.Email, &user.TimeTag)
+		err2 := rows.Scan(&user.ID, &user.Email, &user.TimeTag)
 		// Exit if we get an error
 		if err2 != nil {
 			fmt.Print(err2)
@@ -63,7 +62,7 @@ func ValidateUser(email string, password string) User {
 	con := db.CreateCon()
 	//db.CreateCon()
 	u := User{}
-	err := con.QueryRow("SELECT id, name, time_tag FROM user WHERE email = ? AND password = ?", email, password).Scan(&u.ID, &u.Name, &u.TimeTag)
+	err := con.QueryRow("SELECT id, time_tag FROM user WHERE email = ? AND password = ?", email, password).Scan(&u.ID, &u.TimeTag)
 
 	defer con.Close()
 
@@ -75,11 +74,11 @@ func ValidateUser(email string, password string) User {
 }
 
 // CreateUser function
-func CreateUser(name string, email string, password string) User {
+func CreateUser(email string, password string) User {
 	con := db.CreateCon()
 
 	u := User{}
-	err := con.QueryRow("SELECT id, name, time_tag FROM user WHERE email = ?", email).Scan(&u.ID, &u.Name, &u.TimeTag)
+	err := con.QueryRow("SELECT id, time_tag FROM user WHERE email = ?", email).Scan(&u.ID, &u.TimeTag)
 
 	defer con.Close()
 	if err != nil {
@@ -90,7 +89,7 @@ func CreateUser(name string, email string, password string) User {
 		u.ID = 0
 	}
 
-	res, err := con.Exec("INSERT INTO user (name, email, password) VALUES (?, ?, ?)", name, email, password)
+	res, err := con.Exec("INSERT INTO user (email, password) VALUES (?, ?, ?)", email, password)
 
 	if err != nil {
 		u.ID = -1
@@ -114,7 +113,7 @@ func GetUserByEmail(email string) User {
 	con := db.CreateCon()
 
 	u := User{}
-	err := con.QueryRow("SELECT id, name, time_tag FROM user WHERE email = ?", email).Scan(&u.ID, &u.Name, &u.TimeTag)
+	err := con.QueryRow("SELECT id, time_tag FROM user WHERE email = ?", email).Scan(&u.ID, &u.TimeTag)
 
 	defer con.Close()
 	if err != nil {
