@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	"os"
 	"strings"
 
@@ -21,7 +22,7 @@ func CreateCon() *sql.DB {
 	dbName := dbURIPartAddress[1]
 	dbNameString := strings.Split(dbName, "?")
 
-	// fmt.Println(dbURIParts[1])
+	fmt.Println(dbURIParts[1])
 
 	db, err := sql.Open("mysql", dbURISubParts[0]+"@tcp("+dbURIPartAddress[0]+":3306)/"+dbNameString[0])
 	// db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/db_twitter")

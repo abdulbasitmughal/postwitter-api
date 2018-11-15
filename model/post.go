@@ -14,6 +14,7 @@ type Post struct {
 	TimeTag string `json : "time_tag"`
 }
 
+// ResponsePost struct
 type ResponsePost struct {
 	ID      int64  `json:"id"`
 	Email   string `json:"email"`
@@ -24,6 +25,11 @@ type ResponsePost struct {
 // Posts struct
 type Posts struct {
 	Posts []Post `json:"post"`
+}
+
+// ResponsePosts struct
+type ResponsePosts struct {
+	ResponsePosts []ResponsePost `json:"post"`
 }
 
 // GetUserPosts function
@@ -58,10 +64,10 @@ func GetUserPosts(email string, initValue int, limit int) Posts {
 }
 
 // GetUserPostFeed function
-func GetUserPostFeed(initValue int, limit int) Posts {
+func GetUserPostFeed(initValue int, limit int) ResponsePosts {
 	con := db.CreateCon()
 	//db.CreateCon()
-	sqlStatement := fmt.Sprintf("SELECT id, message, time_tag FROM post ORDER BY time_tag desc LIMIT %d,%d", initValue, limit)
+	sqlStatement := fmt.Sprintf("SELECT user.email, post.message, post.time_tag FROM post INNER JOIN user ON user.id = post.user_id ORDER BY post.time_tag desc LIMIT %d,%d", initValue, limit)
 
 	rows, err := con.Query(sqlStatement)
 
@@ -71,18 +77,18 @@ func GetUserPostFeed(initValue int, limit int) Posts {
 
 	defer rows.Close()
 
-	result := Posts{}
+	result := ResponsePosts{}
 
 	for rows.Next() {
-		post := Post{}
+		post := ResponsePost{}
 
-		err2 := rows.Scan(&post.ID, &post.Message, &post.TimeTag)
+		err2 := rows.Scan(&post.Email, &post.Message, &post.TimeTag)
 		// Exit if we get an error
 		if err2 != nil {
 			fmt.Print(err2)
 		}
 
-		result.Posts = append(result.Posts, post)
+		result.ResponsePosts = append(result.ResponsePosts, post)
 	}
 
 	return result
