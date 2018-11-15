@@ -345,8 +345,32 @@
 			"revisionTime": "2018-09-26T02:28:12Z"
 		},
 		{
+			"checksumSHA1": "hYUsuA+r3JkN8dXbBcZTxu5wGfg=",
+			"path": "github.com/swaggo/swag",
+			"revision": "64ab6b048992665f5899e23f83cbd35a812d5fb0",
+			"revisionTime": "2018-11-14T02:10:57Z"
+		},
+		{
 			"checksumSHA1": "Lhuk2KdhY5OcVdEsGd59UuwUd4w=",
 			"path": "github.com/swaggo/swag/cmd/swag",
+			"revision": "64ab6b048992665f5899e23f83cbd35a812d5fb0",
+			"revisionTime": "2018-11-14T02:10:57Z"
+		},
+		{
+			"checksumSHA1": "36+7Q33P1hSStGWljkY5QyDyGOM=",
+			"path": "github.com/swaggo/swag/testdata/composition/api",
+			"revision": "64ab6b048992665f5899e23f83cbd35a812d5fb0",
+			"revisionTime": "2018-11-14T02:10:57Z"
+		},
+		{
+			"checksumSHA1": "+JUAJ1Q5RZDLNSwB8avuf+5I9O4=",
+			"path": "github.com/swaggo/swag/testdata/simple/api",
+			"revision": "64ab6b048992665f5899e23f83cbd35a812d5fb0",
+			"revisionTime": "2018-11-14T02:10:57Z"
+		},
+		{
+			"checksumSHA1": "QHm78RQmpgtLX+6DLQ52WDXGvKQ=",
+			"path": "github.com/swaggo/swag/testdata/struct_comment/api",
 			"revision": "64ab6b048992665f5899e23f83cbd35a812d5fb0",
 			"revisionTime": "2018-11-14T02:10:57Z"
 		},
