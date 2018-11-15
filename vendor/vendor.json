@@ -131,6 +131,12 @@
 			"revisionTime": "2018-10-07T00:20:15Z"
 		},
 		{
+			"checksumSHA1": "x14t8xAf05vnIcFlJ+lfKtwreYs=",
+			"path": "github.com/go-openapi/swag",
+			"revision": "5899d5c5e619fda5fa86e14795a835f473ca284c",
+			"revisionTime": "2018-10-07T00:18:58Z"
+		},
+		{
 			"checksumSHA1": "5uj0lksF7FcX0Pgf+kjY+T0N8Mw=",
 			"path": "github.com/go-sql-driver/mysql",
 			"revision": "369b5d6e5e8e108ed4ae2f2b1607d444b3807dfb",
