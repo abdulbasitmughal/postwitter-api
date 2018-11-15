@@ -345,6 +345,12 @@
 			"revisionTime": "2018-09-26T02:28:12Z"
 		},
 		{
+			"checksumSHA1": "Lhuk2KdhY5OcVdEsGd59UuwUd4w=",
+			"path": "github.com/swaggo/swag/cmd/swag",
+			"revision": "64ab6b048992665f5899e23f83cbd35a812d5fb0",
+			"revisionTime": "2018-11-14T02:10:57Z"
+		},
+		{
 			"checksumSHA1": "huHTaFXKgoy3UWlOcZiVmqBVj/E=",
 			"path": "github.com/thinkerou/favicon",
 			"revision": "94a442a49da6e2d44bdd5e0d2e2e185c43a19d93",
