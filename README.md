@@ -1,36 +1,63 @@
 
-# go-getting-started
+# postwitter-api
 
-A barebones Go app, which can easily be deployed to Heroku.
+A postwitter-api [Go](https://golang.org/) (version 1.11.2) app, developed [echo](github.com/labstack/echo) framework (version v3.1.0). 
 
-This application supports the [Getting Started with Go on Heroku](https://devcenter.heroku.com/articles/getting-started-with-go) article - check it out.
+This app package include REST API's for user and their post management and it can be easily deployed to Heroku as it includes all requried configurations.
+
+## Features
+
+1. This repo demonstrates the integeration of Go, Echo framwork with MySQL
+2. Its using JWT token verification for all internal calls issued on login
+3. Its fetching lists Post from MySQL database and display into pagination list
+4. It has proper echo framwork middleware and routs defined
+
+## Live Demo
+
+REST API's has been deployed on this link:
+https://postwitter-api.herokuapp.com/
+
+And its running interfaces are available at:
+https://postwitter-portal.herokuapp.com
 
 ## Running Locally
 
-Make sure you have [Go](http://golang.org/doc/install) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+Make sure you have [Go](http://golang.org/doc/install) and the [govendor](https://github.com/kardianos/govendor) installed. It help to add any dependencies to application.
 
 ```sh
-$ go get -u github.com/heroku/go-getting-started
-$ cd $GOPATH/src/github.com/heroku/go-getting-started
-$ heroku local
+$ cd $GOPATH/src
+$ mkdir postwitter-api
+$ git clone git@github.com:abdulbasitmughal/postwitter-api.git
+$ go run server.go
 ```
+Output logs will show port number on which server is listening. 
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-You should also install [govendor](https://github.com/kardianos/govendor) if you are going to add any dependencies to the sample app.
+If your see port 5000 then it will available on [localhost:5000](http://localhost:5000/).
 
 ## Deploying to Heroku
 
+###Install the Heroku CLI
+Download and install the Heroku CLI. If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
+
 ```sh
-$ heroku create
-$ git push heroku master
-$ heroku open
+$ heroku login
 ```
+###Create a new Git repository
+Initialize a git repository in a new or existing directory
 
-or
+```sh
+$ cd postwitter-api/
+$ git init
+$ heroku git:remote -a {remote-project-name}
+```
+###Deploy your application
+Commit your code to the repository and deploy it to Heroku using Git.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
+```sh
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+```
 
 ## Documentation
 
