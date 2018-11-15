@@ -68,3 +68,16 @@ There are total six API's incorporated to complete this assignment. Here are det
 4. Get User's Post (GET: https://postwitter-api.herokuapp.com/v1/users/:email/posts)
 5. Get User's Post Feed (GET: https://postwitter-api.herokuapp.com/v1/posts)
 6. Create Post (POST: https://postwitter-api.herokuapp.com/v1/posts)
+
+## Project Architecture
+
+All files are properly distributed into folder structure. Here are the details:
+
+`/postwitter-api`
+- `/conf`   [Incudes all application configurations in the form of const]
+- `/db` [Includes database connection files]
+- `/db-migration` [includes database sql file which can be restored on the time of first deployment]
+- `/handler` [includes handlers/controllers for applications]
+- `/model` [includes database models which mapped over database tables]
+- `/route` [includes API's URL defincation and their routing to respective controllers]
+- `/vendor` [All third party modules plugin are downloaded in this folder to resolve dependencies]
