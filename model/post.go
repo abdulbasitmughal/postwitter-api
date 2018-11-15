@@ -14,6 +14,13 @@ type Post struct {
 	TimeTag string `json : "time_tag"`
 }
 
+type ResponsePost struct {
+	ID      int64  `json:"id"`
+	Email   string `json:"user_id"`
+	Message string `json: "message"`
+	TimeTag string `json : "time_tag"`
+}
+
 // Posts struct
 type Posts struct {
 	Posts []Post `json:"post"`
@@ -82,10 +89,10 @@ func GetUserPostFeed(initValue int, limit int) Posts {
 }
 
 // CreatePost function
-func CreatePost(email string, message string) Post {
+func CreatePost(email string, message string) ResponsePost {
 	con := db.CreateCon()
 
-	p := Post{}
+	p := ResponsePost{}
 	user := GetUserByEmail(email)
 
 	res, err := con.Exec("INSERT INTO post (user_id, message) VALUES (?, ?)", user.ID, message)
@@ -100,7 +107,7 @@ func CreatePost(email string, message string) Post {
 			p.ID = id
 		}
 	}
-
+	p.Email = email
 	defer con.Close()
 
 	return p
