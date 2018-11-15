@@ -85,21 +85,24 @@ func CreateUser(email string, password string) User {
 		fmt.Println(err)
 	}
 
+	fmt.Println("user exist:", u.ID)
+
 	if u.ID > 0 {
+		fmt.Println("user exist:", u.ID)
 		u.ID = 0
-	}
-
-	res, err := con.Exec("INSERT INTO user (email, password) VALUES (?, ?, ?)", email, password)
-
-	if err != nil {
-		u.ID = -1
 	} else {
-		id, err := res.LastInsertId()
+		res, err := con.Exec("INSERT INTO user (email, password) VALUES (?, ?)", email, password)
+
 		if err != nil {
-			println("Error:", err.Error())
+			u.ID = -1
 		} else {
-			u.ID = id
-			println("LastInsertId:", id)
+			id, err := res.LastInsertId()
+			if err != nil {
+				println("Error:", err.Error())
+			} else {
+				u.ID = id
+				println("LastInsertId:", id)
+			}
 		}
 	}
 

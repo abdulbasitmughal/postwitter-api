@@ -103,5 +103,5 @@ func CreatePost(c echo.Context) (err error) {
 		return &echo.HTTPError{Code: http.StatusBadRequest, Message: "Cannot post message at the moment"}
 	}
 
-	return c.JSON(http.StatusOK, p)
+	return c.JSON(http.StatusOK, post)
 }

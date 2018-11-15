@@ -16,7 +16,7 @@ type Post struct {
 
 type ResponsePost struct {
 	ID      int64  `json:"id"`
-	Email   string `json:"user_id"`
+	Email   string `json:"email"`
 	Message string `json: "message"`
 	TimeTag string `json : "time_tag"`
 }
@@ -88,6 +88,20 @@ func GetUserPostFeed(initValue int, limit int) Posts {
 	return result
 }
 
+// GetPostByID function
+func GetPostByID(id int64) ResponsePost {
+	con := db.CreateCon()
+
+	p := ResponsePost{}
+	err := con.QueryRow("SELECT post.id, message, post.time_tag, email FROM post INNER JOIN user ON user.id = post.user_id WHERE post.id = ?", id).Scan(&p.ID, &p.Message, &p.TimeTag, &p.Email)
+
+	defer con.Close()
+	if err != nil {
+		fmt.Println(err)
+	}
+	return p
+}
+
 // CreatePost function
 func CreatePost(email string, message string) ResponsePost {
 	con := db.CreateCon()
@@ -107,8 +121,8 @@ func CreatePost(email string, message string) ResponsePost {
 			p.ID = id
 		}
 	}
-	p.Email = email
+
 	defer con.Close()
 
-	return p
+	return GetPostByID(p.ID)
 }
