@@ -33,10 +33,10 @@ type ResponsePosts struct {
 }
 
 // GetUserPosts function
-func GetUserPosts(email string, initValue int, limit int) Posts {
+func GetUserPosts(email string, initValue int, limit int) ResponsePosts {
 	con := db.CreateCon()
 	//db.CreateCon()
-	sqlStatement := fmt.Sprintf("SELECT id, message, time_tag FROM post INNER JOIN user ON user.id = post.user_id WHERE email = %s ORDER BY time_tag desc LIMIT %d,%d", email, initValue, limit)
+	sqlStatement := fmt.Sprintf("SELECT user.email, post.message, post.time_tag FROM post INNER JOIN user ON user.id = post.user_id WHERE user.email = '%s' ORDER BY post.time_tag desc LIMIT %d,%d", email, initValue, limit)
 
 	rows, err := con.Query(sqlStatement)
 
@@ -46,18 +46,18 @@ func GetUserPosts(email string, initValue int, limit int) Posts {
 
 	defer rows.Close()
 
-	result := Posts{}
+	result := ResponsePosts{}
 
 	for rows.Next() {
-		post := Post{}
+		post := ResponsePost{}
 
-		err2 := rows.Scan(&post.ID, &post.Message, &post.TimeTag)
+		err2 := rows.Scan(&post.Email, &post.Message, &post.TimeTag)
 		// Exit if we get an error
 		if err2 != nil {
 			fmt.Print(err2)
 		}
 
-		result.Posts = append(result.Posts, post)
+		result.ResponsePosts = append(result.ResponsePosts, post)
 	}
 
 	return result
