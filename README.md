@@ -63,44 +63,50 @@ $ git push heroku master
 
 There are total six API's incorporated to complete this assignment. Here are details:
 1. Signup (POST: https://postwitter-api.herokuapp.com/v1/signup)
-2. Login (POST: https://postwitter-api.herokuapp.com/v1/login)
-3. Get User List (GET: https://postwitter-api.herokuapp.com/v1/users)
-4. Get User's Post (GET: https://postwitter-api.herokuapp.com/v1/users/:email/posts)
-5. Get User's Post Feed (GET: https://postwitter-api.herokuapp.com/v1/posts)
-6. Create Post (POST: https://postwitter-api.herokuapp.com/v1/posts)
-
-## HTTP Request Sample
-
-### Auth
 
 ```bash
-curl -H "Content-Type: application/json" -X POST -d "{\"email\":\"basit@gmail.com\",\"password\":\"123\"}" "http://localhost:54353/v1/login"
 
-# => {"id":2,"email":"basit@gmail.com","token":"eyJhbGciOiJIUzI1NiIsInRasdfCJ9.eyJlbWFpbCI6ImJhc2l0QGdtYWlsLmNvbSIsImV4cCI6MTU0MjYwNDAwOH0.uGRPdwxn4-7NzL1f9XOCr-v5sQySzSvwN78M9jGh6ZY","timetag":"2018-11-13 20:55:20"}
-
-curl -H "Content-Type: application/json" -X POST -d "{\"email\":\"basit10@gmail.com\",\"password\":\"asdf\"}" "http://localhost:54353/v1/signup"
+curl -H "Content-Type: application/json" -X POST -d "{\"email\":\"basit10@gmail.com\",\"password\":\"asdf\"}" "https://postwitter-api.herokuapp.com/v1/signup"
 
 # => {"id":15,"email":"basit10@gmail.com"}
 
 ```
 
-### Users
+2. Login (POST: https://postwitter-api.herokuapp.com/v1/login)
 
 ```bash
-curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhc2l0MUBnbWFpbC5jb20iLCJleHAiOjE1NDI1MTMwMjB9.TnxeVIhuVfpaD6d46tAVBsqVs3vx9PVmL6ExMvXiqug"  -X GET "http://localhost:55625/v1/users"
+
+curl -H "Content-Type: application/json" -X POST -d "{\"email\":\"basit@gmail.com\",\"password\":\"123\"}" "https://postwitter-api.herokuapp.com/v1/login"
+
+# => {"id":2,"email":"basit@gmail.com","token":"eyJhbGciOiJIUzI1NiIsInRasdfCJ9.eyJlbWFpbCI6ImJhc2l0QGdtYWlsLmNvbSIsImV4cCI6MTU0MjYwNDAwOH0.uGRPdwxn4-7NzL1f9XOCr-v5sQySzSvwN78M9jGh6ZY","timetag":"2018-11-13 20:55:20"}
+
+```
+
+3. Get User List (GET: https://postwitter-api.herokuapp.com/v1/users)
+
+```bash
+
+curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhc2l0MUBnbWFpbC5jb20iLCJleHAiOjE1NDI1MTMwMjB9.TnxeVIhuVfpaD6d46tAVBsqVs3vx9PVmL6ExMvXiqug"  -X GET "https://postwitter-api.herokuapp.com/v1/users"
 
 # => {"user":[{"id":1,"email":"abdulbasitmughal@gmail.com","timetag":"2018-11-13 20:54:40"}]}
 
-curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhc2l0MUBnbWFpbC5jb20iLCJleHAiOjE1NDI1MTMwMjB9.TnxeVIhuVfpaD6d46tAVBsqVs3vx9PVmL6ExMvXiqug"  -X GET "http://localhost:55625/v1/users/basit1@gmail.com/posts?limit=5&page=1"
+```
+
+4. Get User's Post (GET: https://postwitter-api.herokuapp.com/v1/users/:email/posts)
+
+```bash
+
+curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhc2l0MUBnbWFpbC5jb20iLCJleHAiOjE1NDI1MTMwMjB9.TnxeVIhuVfpaD6d46tAVBsqVs3vx9PVmL6ExMvXiqug"  -X GET "https://postwitter-api.herokuapp.com/v1/users/:email/posts?limit=5&page=1"
 
 # => {"post":[{"id":0,"email":"basit1@gmail.com","Message":"test message1","TimeTag":"2018-11-16 09:33:34"},{"id":0,"email":"basit1@gmail.com","Message":"test message1","TimeTag":"2018-11-16 09:23:00"}]}
 
 ```
 
-### Posts
+5. Get User's Post Feed (GET: https://postwitter-api.herokuapp.com/v1/posts)
 
 ```bash
-curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhc2l0MUBnbWFpbC5jb20iLCJleHAiOjE1NDI1MTMwMjB9.TnxeVIhuVfpaD6d46tAVBsqVs3vx9PVmL6ExMvXiqug"  -X GET "http://localhost:55625/v1/posts?page=1&limit=2"
+
+curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhc2l0MUBnbWFpbC5jb20iLCJleHAiOjE1NDI1MTMwMjB9.TnxeVIhuVfpaD6d46tAVBsqVs3vx9PVmL6ExMvXiqug"  -X GET "https://postwitter-api.herokuapp.com/v1/posts?page=1&limit=2"
 
 # => {"post":[{"id":0,"email":"basit1@gmail.com","Message":"test message1","TimeTag":"2018-11-16 09:33:34"},{"id":0,"email":"basit1@gmail.com","Message":"test message1","TimeTag":"2018-11-16 09:23:00"}]}
 
@@ -109,3 +115,15 @@ curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIU
 # => {"id":25,"email":"basit1@gmail.com","Message":"test message","TimeTag":"2018-11-16 10:21:36"}
 
 ```
+
+6. Create Post (POST: https://postwitter-api.herokuapp.com/v1/posts)
+
+```bash
+
+curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhc2l0MUBnbWFpbC5jb20iLCJleHAiOjE1NDI1MTMwMjB9.TnxeVIhuVfpaD6d46tAVBsqVs3vx9PVmL6ExMvXiqug" -X POST -d "{\"message\":\"test message\"}" "https://postwitter-api.herokuapp.com/v1/posts"
+
+# => {"id":25,"email":"basit1@gmail.com","Message":"test message","TimeTag":"2018-11-16 10:21:36"}
+
+```
+
+
