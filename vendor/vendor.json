@@ -25,6 +25,18 @@
 			"revisionTime": "2017-08-10T14:37:23Z"
 		},
 		{
+			"checksumSHA1": "NDy4NGShvxxVkiaEpC2+yCcltZ8=",
+			"path": "github.com/alecthomas/template",
+			"revision": "a0175ee3bccc567396460bf5acd36800cb10c49c",
+			"revisionTime": "2016-04-05T07:15:01Z"
+		},
+		{
+			"checksumSHA1": "cJPPhdMhOWc+4d39qmPQkYIC/gE=",
+			"path": "github.com/alecthomas/template/parse",
+			"revision": "a0175ee3bccc567396460bf5acd36800cb10c49c",
+			"revisionTime": "2016-04-05T07:15:01Z"
+		},
+		{
 			"checksumSHA1": "uG6qNQJJ0k4X9bTD8768JuqYYMI=",
 			"path": "github.com/campoy/embedmd",
 			"revision": "c59ce00e02967db5e93d897330142a3ef6145786",

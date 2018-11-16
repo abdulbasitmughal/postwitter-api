@@ -17,9 +17,8 @@ import (
 // @Description register user using email address, there is no email validation
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} model.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+// @Success 200 {array} model.User
+// @Failure 400 {object} echo.HTTPError
 // @Router /v1/signup [post]
 func Signup(c echo.Context) (err error) {
 	// Bind
@@ -51,10 +50,9 @@ func Signup(c echo.Context) (err error) {
 // @Description login user using email address and password
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} model.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 401 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+// @Success 200 {array} model.User
+// @Failure 400 {object} echo.HTTPError
+// @Failure 401 {object} echo.HTTPError
 // @Router /v1/login [post]
 func Login(c echo.Context) (err error) {
 	// Bind

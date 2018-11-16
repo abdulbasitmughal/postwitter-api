@@ -1,0 +1,175 @@
+definitions:
+  echo.HTTPError:
+    properties:
+      code:
+        type: integer
+      message:
+        type: object
+    type: object
+  model.Post:
+    properties:
+      id:
+        type: integer
+      message:
+        type: string
+      timeTag:
+        type: string
+      user_id:
+        $ref: '#/definitions/model.User'
+        type: object
+    type: object
+  model.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      password:
+        type: string
+      timeTag:
+        type: string
+      token:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /v1/login:
+    post:
+      consumes:
+      - application/json
+      description: login user using email address and password
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: login user using email address and password
+  /v1/posts:
+    get:
+      consumes:
+      - application/json
+      description: get accounts
+      parameters:
+      - description: page search by q
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Post'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: List accounts
+    post:
+      consumes:
+      - application/json
+      description: get accounts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Post'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Create Post
+  /v1/signup:
+    post:
+      consumes:
+      - application/json
+      description: register user using email address, there is no email validation
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Signup user
+  /v1/users:
+    get:
+      consumes:
+      - application/json
+      description: get user list with page number and limit for page
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+            type: object
+      summary: Get users list registered into the system.
+  /v1/users/:
+    get:
+      consumes:
+      - application/json
+      description: get list of user posts using email address
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Post'
+            type: array
+      summary: List Users Posts

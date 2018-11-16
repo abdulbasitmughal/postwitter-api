@@ -15,7 +15,6 @@ import (
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} model.Post
-// @Failure 500 {object} httputil.HTTPError
 // @Router /v1/users/:email/posts [get]
 func GetUserPosts(c echo.Context) error {
 
@@ -43,10 +42,9 @@ func GetUserPosts(c echo.Context) error {
 // @Accept  json
 // @Produce  json
 // @Param q query string false "page search by q"
-// @Success 200 {array} model.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 401 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+// @Success 200 {array} model.Post
+// @Failure 400 {object} echo.HTTPError
+// @Failure 401 {object} echo.HTTPError
 // @Router /v1/posts [get]
 func GetUserPostFeed(c echo.Context) error {
 
@@ -72,10 +70,9 @@ func GetUserPostFeed(c echo.Context) error {
 // @Description get accounts
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} model.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 401 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+// @Success 200 {array} model.Post
+// @Failure 400 {object} echo.HTTPError
+// @Failure 401 {object} echo.HTTPError
 // @Router /v1/posts [post]
 func CreatePost(c echo.Context) (err error) {
 	// Get User info

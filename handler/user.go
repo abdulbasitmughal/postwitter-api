@@ -12,13 +12,11 @@ import (
 // GetUsers godoc
 // @Summary Get users list registered into the system.
 // @Description get user list with page number and limit for page
-// @ID get-string
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} model.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+// @Success 200 {object} model.User
+// @Failure 400 {object} echo.HTTPError
+// @Failure 404 {object} echo.HTTPError
 // @Router /v1/users [get]
 func GetUsers(c echo.Context) error {
 
