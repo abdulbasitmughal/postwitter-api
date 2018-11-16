@@ -12,18 +12,15 @@ import (
 	"github.com/labstack/echo"
 )
 
-// Signup function
-// Login godoc
-// @Summary List accounts
-// @Description get accounts
+// Signup godoc
+// @Summary Signup user
+// @Description register user using email address, there is no email validation
 // @Accept  json
 // @Produce  json
-// @Param q query string false "name search by q"
 // @Success 200 {array} model.Account
 // @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
 // @Failure 500 {object} httputil.HTTPError
-// @Router /accounts [get]
+// @Router /v1/signup [post]
 func Signup(c echo.Context) (err error) {
 	// Bind
 	u := new(model.User)
@@ -50,16 +47,15 @@ func Signup(c echo.Context) (err error) {
 }
 
 // Login godoc
-// @Summary List accounts
-// @Description get accounts
+// @Summary login user using email address and password
+// @Description login user using email address and password
 // @Accept  json
 // @Produce  json
-// @Param q query string false "name search by q"
 // @Success 200 {array} model.Account
 // @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
+// @Failure 401 {object} httputil.HTTPError
 // @Failure 500 {object} httputil.HTTPError
-// @Router /accounts [get]
+// @Router /v1/login [post]
 func Login(c echo.Context) (err error) {
 	// Bind
 	u := new(model.User)
@@ -72,10 +68,6 @@ func Login(c echo.Context) (err error) {
 	if user.ID <= 0 {
 		return &echo.HTTPError{Code: http.StatusUnauthorized, Message: "invalid email or password"}
 	}
-
-	//-----
-	// JWT
-	//-----
 
 	// Create token
 	token := jwt.New(jwt.SigningMethodHS256)
