@@ -110,10 +110,6 @@ curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIU
 
 # => {"post":[{"id":0,"email":"basit1@gmail.com","Message":"test message1","TimeTag":"2018-11-16 09:33:34"},{"id":0,"email":"basit1@gmail.com","Message":"test message1","TimeTag":"2018-11-16 09:23:00"}]}
 
-curl -H "Content-Type: application/json" -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhc2l0MUBnbWFpbC5jb20iLCJleHAiOjE1NDI1MTMwMjB9.TnxeVIhuVfpaD6d46tAVBsqVs3vx9PVmL6ExMvXiqug" -X POST -d "{\"message\":\"test message\"}" "http://localhost:55625/v1/posts"
-
-# => {"id":25,"email":"basit1@gmail.com","Message":"test message","TimeTag":"2018-11-16 10:21:36"}
-
 ```
 
 6. Create Post (POST: https://postwitter-api.herokuapp.com/v1/posts)
