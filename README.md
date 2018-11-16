@@ -20,6 +20,10 @@ https://postwitter-api.herokuapp.com/
 And its running interfaces are available at:
 https://postwitter-portal.herokuapp.com
 
+## API's Details on Swagger UI
+
+https://postwitter-api.herokuapp.com/v1/swagger/index.html
+
 ## Running Locally
 
 Make sure you have [Go](http://golang.org/doc/install) and the [govendor](https://github.com/kardianos/govendor) installed. It help to add any dependencies to application.
