@@ -2,14 +2,9 @@ package main
 
 import (
 	"os"
-	"postwitter-api/handler"
-
-	"postwitter-api/conf"
+	"postwitter-api/route"
 
 	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
-
-	"github.com/swaggo/echo-swagger"
 )
 
 // @title Postwitter REST API
@@ -40,38 +35,10 @@ import (
 
 func main() {
 	e := echo.New()
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
 
-	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"*"},
-		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
-	}))
-
-	e.Use(middleware.JWTWithConfig(middleware.JWTConfig{
-		SigningKey: []byte(conf.KEY),
-		Skipper: func(c echo.Context) bool {
-			// Skip authentication for and signup login requests
-			if c.Path() == "/v1/login" || c.Path() == "/v1/signup" || c.Path() == "/v1/swagger" {
-				return true
-			}
-			return false
-		},
-	}))
-
-	e.GET("/v1/swagger/*", echoSwagger.WrapHandler)
-
-	// Routes
-	e.POST("/v1/signup", handler.Signup)
-	e.POST("/v1/login", handler.Login)
-
-	e.GET("/v1/users", handler.GetUsers)
-	e.GET("/v1/users/:email/posts", handler.GetUserPosts)
-
-	e.GET("/v1/posts", handler.GetUserPostFeed)
-	e.POST("/v1/posts", handler.CreatePost)
-
+	// Routs
+	router := route.Init()
 	// Start server
-	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
+	e.Logger.Fatal(router.Start(":" + os.Getenv("PORT")))
 
 }
